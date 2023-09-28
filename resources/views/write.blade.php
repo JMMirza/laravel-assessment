@@ -40,20 +40,19 @@
                 @else
                     <form action="{{ route('assessment.store') }}" method="post" class="gap-2 w-full">
                         @csrf
-                        {{-- <div class="col-md-6"> --}}
-                        <input required name="question" id="question"
-                            class="w-full mb-3 outline-none text-2xl font-bold" placeholder="{{ $question }}"
-                            value="{{ $question }}" />
+                        <input name="" id="" class="w-full mb-3 outline-none text-2xl font-bold"
+                            placeholder="{{ $question }}" value="{{ $question }}" disabled />
 
-                        {{-- </div> --}}
                         <input required name="answer" id="answer" class="w-full outline-none text-2xl font-bold"
                             placeholder="Type your answer here...">
+                        <input required name="question" id="question" value="{{ $question }}"
+                            style="display: none" />
+                        <input id="question_no" name="question_no" value="{{ $question_no + 1 }}"
+                            style="display: none" />
                         <button class="rounded-md bg-emerald-500 mt-3 px-4 py-2 text-white font-semibold float-end"
                             id="proceedButton" disabled>
                             Proceed
                         </button>
-                        <input id="question_no" name="question_no" value="{{ $question_no + 1 }}"
-                            style="display: none" />
                     </form>
                 @endif
                 <input id="url" value="{{ route('check-ans') }}" style="display: none" />
@@ -106,7 +105,7 @@
                             } else {
                                 document.getElementById('success').style.display = "block";
                                 document.getElementById('error').style.display = "none";
-                                $('#success').val(response)
+                                $('#success').val('The answer is good to go!')
                                 $('#proceedButton').prop('disabled', false);
                             }
                         },
