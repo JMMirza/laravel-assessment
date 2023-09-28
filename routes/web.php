@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AssessmentController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,4 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// Resourcefull route to proceed the questions
 Route::resources(['assessment' => AssessmentController::class]);
+//Post method to get the suggestion of data
+Route::post('check-ans', [HomeController::class, 'index'])->name('check-ans');
